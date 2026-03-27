@@ -1,4 +1,18 @@
-const API_BASE = localStorage.getItem("crm_api_base") || "http://127.0.0.1:8000/api";
+// Auto-detect API base: use localStorage, or detect environment
+const getDefaultApiBase = () => {
+  if (typeof window !== "undefined") {
+    const hostname = window.location.hostname;
+    // If localhost/127.0.0.1, use local backend; otherwise use Render backend
+    if (hostname === "localhost" || hostname === "127.0.0.1") {
+      return "http://127.0.0.1:8000/api";
+    }
+    // Production: use Render backend
+    return "https://leadflow-hsyp.onrender.com/api";
+  }
+  return "http://127.0.0.1:8000/api";
+};
+
+const API_BASE = localStorage.getItem("crm_api_base") || getDefaultApiBase();
 const TOKEN_KEY = "crm_token";
 const BOOKMARKS_KEY = "crm_bookmarked_leads";
 const DASHBOARD_SETTINGS_KEY = "crm_dashboard_settings";

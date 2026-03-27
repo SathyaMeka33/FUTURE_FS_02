@@ -19,3 +19,11 @@ services:
         value: "https://your-service-name.onrender.com,https://your-frontend.vercel.app"
       - key: SECURE_HSTS_SECONDS
         value: "31536000"
+  - type: static_site
+    name: crm-frontend
+    rootDir: frontend
+    buildCommand: ""
+    staticPublishPath: ./
+    envVars:
+      - key: FRONTEND_API_URL
+        value: "https://leadflow-hsyp.onrender.com/api"
