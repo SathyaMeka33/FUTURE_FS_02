@@ -57,3 +57,4 @@
 [2026-03-27] Fixed Render start command to use crm_project.wsgi instead of core.wsgi
 [2026-03-27] ✅ DEPLOYMENT SUCCESSFUL - Backend service now LIVE on Render at https://leadflow-hsyp.onrender.com. Gunicorn started successfully with correct crm_project.wsgi module. All dependencies installed, migrations applied.
 [2026-03-27] Added static site service to render.yaml for frontend deployment. Updated script.js to auto-detect API base URL (localhost vs production).
+[2026-03-27] Created FRONTEND_DEPLOYMENT.md guide with detailed steps for Render static site deployment and CORS configuration.
