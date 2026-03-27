@@ -52,3 +52,4 @@
 [2026-03-27] Updated deployment hardening and active settings module for Render compatibility
 [2026-03-27] Started local frontend server at http://127.0.0.1:5500 and verified backend API reachable at http://127.0.0.1:8000 (401 expected without auth)
 [2026-03-27] Fixed Render DB driver/runtime issue: switched to psycopg3 binary and pinned Python runtime to 3.12.8
+[2026-03-27] Updated psycopg to compatible version 3.2.13 for Python 3.12 Render runtime
