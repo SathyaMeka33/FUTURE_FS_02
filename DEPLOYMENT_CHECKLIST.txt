@@ -1,0 +1,211 @@
+================================================================================
+FRONTEND DEPLOYMENT CHECKLIST - RENDER
+Date Created: 2026-03-27
+Status: READY FOR DEPLOYMENT
+================================================================================
+
+CURRENT STATE (COMPLETED):
+================================================================================
+✅ Backend deployed and LIVE on Render
+   - URL: https://leadflow-hsyp.onrender.com
+   - All dependencies installed (psycopg==3.3.3)
+   - Database migrations applied
+   - Gunicorn running successfully
+
+✅ Code prepared for frontend deployment
+   - script.js updated with auto-detect API URL logic
+   - render.yaml updated with frontend static site configuration
+   - All changes pushed to GitHub (main branch)
+   - Commit: 534470f
+
+
+TOMORROW: FRONTEND DEPLOYMENT STEPS
+================================================================================
+
+STEP 1: Deploy Frontend to Render
+-----------
+1. Go to Render Dashboard: https://dashboard.render.com
+2. Click "New +"
+3. Select "Static Site"
+4. Connect GitHub Repository:
+   - Repository: https://github.com/SathyaMeka33/FUTURE_FS_02
+   - Branch: main
+5. Configure Static Site:
+   - Name: crm-frontend (or preferred name)
+   - Root Directory: frontend
+   - Build Command: (leave empty - no build needed)
+   - Publish Directory: ./ (current directory)
+6. Click "Deploy"
+7. Wait for deployment to complete (~1-2 minutes)
+8. SAVE THE FRONTEND URL (looks like: https://crm-frontend-xxxx.onrender.com)
+
+
+STEP 2: Update Backend CORS Configuration
+-----------
+1. Go to Render Dashboard: https://dashboard.render.com
+2. Click on your Backend Service: "crm-backend"
+3. Go to Settings > Environment
+4. Find or add these environment variables:
+
+   Variable: CORS_ALLOWED_ORIGINS
+   Value: https://crm-frontend-xxxx.onrender.com
+   (Replace xxxx with your actual frontend service ID)
+
+   Variable: CSRF_TRUSTED_ORIGINS
+   Value: https://crm-frontend-xxxx.onrender.com
+   (Same as above)
+
+5. Click "Save Changes"
+6. Wait for backend to auto-redeploy (~1-2 minutes)
+
+
+STEP 3: Test the Full Deployment
+-----------
+1. Open your Frontend URL in browser:
+   https://crm-frontend-xxxx.onrender.com/dashboard.html
+
+2. Test Lead Submission:
+   - Go to /index.html (public form)
+   - Fill in: Full Name, Email, Phone, Source
+   - Click "Submit"
+   - Should see success message
+
+3. Test Admin Login:
+   - Go to /login.html
+   - Enter Username: admin
+   - Enter Password: (use your admin password)
+   - Click "Login"
+   - Should receive token and redirect to dashboard
+
+4. Test Dashboard Operations:
+   - View list of leads
+   - Test filters (Status, Priority, Source, etc.)
+   - Test search functionality
+   - Test pagination
+   - Test sorting
+   - Test bookmarks feature
+   - Test CSV export
+
+5. If everything works, deployment is complete! ✅
+
+
+TROUBLESHOOTING
+================================================================================
+
+ERROR: "GET https://your-frontend/... 400 (Bad Request)"
+FIX: This is normal during initial requests. Wait a minute and refresh.
+
+ERROR: CORS error - "No 'Access-Control-Allow-Origin' header"
+FIX: 
+1. Check backend CORS_ALLOWED_ORIGINS env var matches frontend URL exactly
+2. Wait for backend to redeploy after saving env vars
+3. Hard refresh browser (Ctrl+Shift+R or Cmd+Shift+R)
+
+ERROR: "Cannot reach backend"
+FIX:
+1. Verify frontend can reach: https://leadflow-hsyp.onrender.com/api/
+2. Check if API_BASE in script.js auto-detected correctly
+3. Open DevTools Console and manually test:
+   localStorage.setItem('crm_api_base', 'https://leadflow-hsyp.onrender.com/api')
+   location.reload()
+
+ERROR: 401 Unauthorized on login
+FIX:
+1. Clear token: localStorage.removeItem('crm_token')
+2. Clear browser cache
+3. Try logging in again with correct username/password
+4. Use admin/admin if using default Django admin credentials
+
+
+QUICK REFERENCE URLS
+================================================================================
+
+GitHub Repository:
+https://github.com/SathyaMeka33/FUTURE_FS_02
+
+Render Dashboard:
+https://dashboard.render.com
+
+Backend API (Production):
+https://leadflow-hsyp.onrender.com/api/
+
+Frontend (After Deployment):
+https://crm-frontend-xxxx.onrender.com/dashboard.html
+https://crm-frontend-xxxx.onrender.com/index.html (public form)
+https://crm-frontend-xxxx.onrender.com/login.html (admin login)
+
+Backend Admin (Local):
+http://127.0.0.1:8000/admin/
+
+LocalBackend API (Dev):
+http://127.0.0.1:8000/api/
+
+
+CONFIGURATION DETAILS
+================================================================================
+
+Auto-Detection Logic in script.js:
+- If running on localhost/127.0.0.1 → Uses local backend (http://127.0.0.1:8000/api)
+- If running on any other domain → Uses Render backend (https://leadflow-hsyp.onrender.com/api)
+- Can override with: localStorage.setItem('crm_api_base', 'your-url')
+
+
+Backend Environment Variables Required on Render:
+- SECRET_KEY: (auto-generated)
+- DEBUG: False
+- ALLOWED_HOSTS: leadflow-hsyp.onrender.com
+- DATABASE_URL: (your Neon database URL - already set)
+- CORS_ALLOWED_ORIGINS: https://crm-frontend-xxxx.onrender.com
+- CSRF_TRUSTED_ORIGINS: https://crm-frontend-xxxx.onrender.com
+- SECURE_HSTS_SECONDS: 31536000
+
+
+DATABASE
+================================================================================
+
+Provider: Neon (PostgreSQL)
+Connection: Via DATABASE_URL environment variable on Render
+Tables: admin, auth, authtoken, contenttypes, leads, sessions
+Lead Fields: id, full_name, email, phone, service_interested, status, created_at, updated_at
+
+
+FILES MODIFIED IN THIS SESSION
+================================================================================
+
+1. frontend/script.js
+   - Added getDefaultApiBase() function for auto-detection
+   - Updated API_BASE initialization
+
+2. render.yaml
+   - Added static_site service configuration for frontend
+
+3. FRONTEND_DEPLOYMENT.md
+   - Created detailed deployment guide
+
+4. ACTION_LOG.txt
+   - Updated with all session changes
+
+All changes committed to GitHub main branch (commit: 534470f)
+
+
+NOTES FOR NEXT SESSION
+================================================================================
+
+- Frontend is configured and ready to deploy
+- It will auto-connect to Render backend
+- No code changes needed before deployment
+- Just need to create Render static site and update CORS settings
+- Everything is documented and pushed to GitHub
+- Local development will continue using localhost backend automatically
+
+
+REMEMBER:
+================================================================================
+✓ Check GitHub for latest code before deployment
+✓ Use exact frontend URL when updating backend CORS settings
+✓ Wait for services to redeploy after configuration changes
+✓ Test thoroughly after deployment
+✓ Keep this checklist handy for reference
+
+Good luck with deployment tomorrow! 🚀
+================================================================================
