@@ -45,3 +45,5 @@
 [2026-03-27] Replaced CRM traffic bars with dual-line interactive chart style
 [2026-03-27] Made settings panel dashboard-related and wired behavior to chart/filter preferences
 [2026-03-27] Reorganized bookmark checkboxes into dedicated control actions layout
+[2026-03-27] Prepared project for Render deployment - initialized Git, created .gitignore, render.yaml, and RENDER_DEPLOYMENT.md guide
+[2026-03-27] Finalized Render deploy prep: renamed git branch to main and verified push prerequisites
