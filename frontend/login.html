@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini CRM | Admin Login</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="login">
+  <main class="page-wrap">
+    <section class="login-card">
+      <div class="brand">
+        <div class="logo-mark" aria-hidden="true">MC</div>
+        <div class="logo-text">
+          <div class="logo-title">Mini CRM</div>
+          <div class="logo-tagline">Admin Console</div>
+        </div>
+      </div>
+
+      <h1>Sign in</h1>
+      <p class="subtitle">Access the dashboard to manage leads</p>
+
+      <form id="login-form" novalidate>
+        <label>
+          Username
+          <input type="text" name="username" placeholder="Enter your username" required />
+        </label>
+
+        <label>
+          Password
+          <input type="password" name="password" placeholder="Enter your password" required />
+        </label>
+
+        <button type="submit" class="primary" style="width: 100%;">Sign In</button>
+      </form>
+
+      <p id="message" class="message" aria-live="polite"></p>
+      <p class="meta-link"><a href="index.html">← Submit a new lead</a></p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

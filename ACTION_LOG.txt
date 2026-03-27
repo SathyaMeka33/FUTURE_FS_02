@@ -1,0 +1,47 @@
+2026-03-27 | Initialized complete Mini CRM project scaffold from empty workspace.
+2026-03-27 | Created backend Django project structure: crm_project, leads app, migrations, requirements, env template.
+2026-03-27 | Implemented Lead model, serializer, permissions, admin registration, viewset CRUD, search/filter/ordering/pagination, analytics endpoint.
+2026-03-27 | Implemented auth APIs: login/logout using DRF token authentication.
+2026-03-27 | Configured NeonDB-compatible PostgreSQL settings via environment variables.
+2026-03-27 | Built frontend pages: contact form, admin login, dashboard.
+2026-03-27 | Added dashboard features: inline status update, notes editing, delete, search/filter, pagination, analytics cards.
+2026-03-27 | Added project README with setup, commands, endpoint documentation, and deployment notes.
+2026-03-27 | Created local Python virtual environment at .venv.
+2026-03-27 | Installed backend requirements from backend/requirements.txt.
+2026-03-27 | Configured workspace Python interpreter to .venv for immediate development use.
+2026-03-27 | Validated generated project file structure.
+2026-03-27 | Fixed login reliability by adding SQLite fallback in settings when DB_HOST is not configured.
+2026-03-27 | Updated CORS behavior for local development (allow all origins in DEBUG when no explicit origins are configured).
+2026-03-27 | Improved frontend API error handling to show clear backend connectivity/login guidance.
+2026-03-27 | Applied Django migrations for auth/authtoken/leads tables.
+2026-03-27 | Bootstrapped admin account for local login (username: admin).
+2026-03-27 | Verified POST /api/auth/login/ returns token successfully.
+2026-03-27 | Added DATABASE_URL parsing support in Django settings for Neon connection strings.
+2026-03-27 | Created backend/.env and configured Neon PostgreSQL connection details from user-provided credentials.
+2026-03-27 | Updated settings.py database block to strict Neon DATABASE_URL parsing using urlparse + parse_qsl as requested.
+2026-03-27 | Verified Neon connectivity via Django DB ping query.
+2026-03-27 | Applied all Django migrations successfully on Neon database CRM.
+2026-03-27 | Created/updated Neon admin user for login access (username: admin).
+2026-03-27 | Started Django development server on 127.0.0.1:8000 (background terminal ID: 5783b8ca-7436-4fa4-acf7-edfbd5d1aa08).
+2026-03-27 | Verified server availability via GET /api/leads/ response code 401 (expected without auth).
+2026-03-27 | REDESIGN: Updated frontend UI with professional CRM dashboard styling matching enterprise product design.
+2026-03-27 | REDESIGN: Updated style.css - modern purple/pink color scheme, sidebar navigation, professional typography, responsive grids.
+2026-03-27 | REDESIGN: Updated dashboard.html - added dark sidebar menu, user profile section, enhanced analytics cards with badges.
+2026-03-27 | REDESIGN: Updated login.html - modern gradient background, centered premium login card design.
+2026-03-27 | REDESIGN: Updated index.html (contact form) - gradient background, improved input styling with placeholders, modernized buttons.
+2026-03-27 | REDESIGN: Enhanced script.js with reset filters button functionality.
+2026-03-27 | UI POLISH: Removed all gradient backgrounds from frontend pages and components (solid, professional palette).
+2026-03-27 | UI POLISH: Added consistent Mini CRM logo/wordmark (MC mark) across dashboard, login, and lead submission; replaced sidebar emojis with clean inline SVG icons.
+2026-03-27 | ADVANCED CRM: Extended Lead pipeline to include Qualified stage; added Lead priority and assignment to team members.
+2026-03-27 | ADVANCED CRM: Added follow-up Task system (call/email/meeting) with due dates, pending/completed status, and notifications (due today + overdue).
+2026-03-27 | ADVANCED CRM: Implemented Activity timeline tracking for key lead events (create/status/priority/assignment/notes/tasks/attachments/emails).
+2026-03-27 | ADVANCED CRM: Expanded analytics endpoint to include leads by source and leads over time (daily/weekly).
+2026-03-27 | ADVANCED CRM: Added file attachment upload API for leads and basic email templates + email send logging.
+2026-03-27 | ADVANCED CRM: Added iCal calendar feed endpoint for upcoming follow-up tasks.
+2026-03-27 | ADVANCED CRM: Updated dashboard to manage priority/assignee, create follow-up tasks, upload attachments, and filter by priority/assignee/date.
+2026-03-27 | UI: Added draggable sidebar resizer on dashboard with width persisted in localStorage.
+2026-03-27 | UI: Made sidebar menu buttons functional (scroll-to-section navigation + Settings panel for API base).
+[2026-03-27] Added graphical CRM traffic charts, bookmark workflow, and CSV export in dashboard UI
+[2026-03-27] Replaced CRM traffic bars with dual-line interactive chart style
+[2026-03-27] Made settings panel dashboard-related and wired behavior to chart/filter preferences
+[2026-03-27] Reorganized bookmark checkboxes into dedicated control actions layout

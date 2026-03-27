@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini CRM | Contact</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="contact">
+  <main class="page-wrap">
+    <section class="contact-card">
+      <div class="brand">
+        <div class="logo-mark" aria-hidden="true">MC</div>
+        <div class="logo-text">
+          <div class="logo-title">Mini CRM</div>
+          <div class="logo-tagline">Lead Submission</div>
+        </div>
+      </div>
+
+      <h1>Contact Us</h1>
+      <p class="subtitle">Share your details and we’ll reach out</p>
+
+      <form id="lead-form" novalidate>
+        <label>
+          Full Name
+          <input type="text" name="name" placeholder="John Doe" required maxlength="120" />
+        </label>
+
+        <label>
+          Email Address
+          <input type="email" name="email" placeholder="john@example.com" required />
+        </label>
+
+        <label>
+          Phone Number
+          <input type="tel" name="phone" placeholder="+1 (555) 000-0000" required maxlength="25" />
+        </label>
+
+        <label>
+          How did you hear about us?
+          <select name="source" required>
+            <option value="">Select an option...</option>
+            <option value="website">Website</option>
+            <option value="instagram">Instagram</option>
+            <option value="referral">Referral</option>
+            <option value="linkedin">LinkedIn</option>
+            <option value="other">Other</option>
+          </select>
+        </label>
+
+        <button type="submit" class="primary" style="width: 100%;">Submit Lead</button>
+      </form>
+
+      <p id="message" class="message" aria-live="polite"></p>
+      <p class="meta-link"><a href="login.html">Admin login →</a></p>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

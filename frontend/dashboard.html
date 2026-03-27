@@ -1,0 +1,339 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini CRM | Dashboard</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body data-page="dashboard">
+  <aside class="sidebar">
+    <div class="sidebar-logo brand">
+      <div class="logo-mark" aria-hidden="true">MC</div>
+      <div class="logo-text">
+        <div class="logo-title">Mini CRM</div>
+        <div class="logo-tagline">Lead Management</div>
+      </div>
+    </div>
+
+    <div class="sidebar-section">
+      <button type="button" class="sidebar-item active" data-target="#section-dashboard">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 3v18h18" />
+            <path d="M7 14v4" />
+            <path d="M12 10v8" />
+            <path d="M17 6v12" />
+          </svg>
+        </span>
+        <span>Dashboard</span>
+      </button>
+      <button type="button" class="sidebar-item" data-target="#section-followups">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14 2 9.27l6.91-1.01L12 2z" />
+          </svg>
+        </span>
+        <span>Follow-ups</span>
+      </button>
+    </div>
+
+    <div class="sidebar-section">
+      <div class="sidebar-label">Reports</div>
+      <button type="button" class="sidebar-item" data-target="#section-realtime">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 12h4l3 8 4-16 3 8h4" />
+          </svg>
+        </span>
+        <span>Real-time</span>
+      </button>
+      <button type="button" class="sidebar-item" data-target="#section-leads">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
+            <circle cx="9" cy="7" r="4" />
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
+            <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          </svg>
+        </span>
+        <span>Leads</span>
+      </button>
+      <button type="button" class="sidebar-item" data-target="#section-conversion">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M23 6l-9.5 9.5-5-5L1 18" />
+            <path d="M17 6h6v6" />
+          </svg>
+        </span>
+        <span>Conversion</span>
+      </button>
+      <button type="button" class="sidebar-item" data-target="#section-settings">
+        <span class="icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 1v2" />
+            <path d="M12 21v2" />
+            <path d="M4.22 4.22l1.42 1.42" />
+            <path d="M18.36 18.36l1.42 1.42" />
+            <path d="M1 12h2" />
+            <path d="M21 12h2" />
+            <path d="M4.22 19.78l1.42-1.42" />
+            <path d="M18.36 5.64l1.42-1.42" />
+            <circle cx="12" cy="12" r="3" />
+          </svg>
+        </span>
+        <span>Settings</span>
+      </button>
+    </div>
+
+    <div class="sidebar-resizer" id="sidebar-resizer" role="separator" aria-orientation="vertical" aria-label="Resize sidebar"></div>
+  </aside>
+
+  <div class="main-content">
+    <header class="topbar">
+      <div class="topbar-left">
+        <h1>Dashboard</h1>
+      </div>
+      <div class="topbar-right">
+        <div class="user-profile">
+          <div class="avatar">A</div>
+          <div style="font-size: 14px;">
+            <div style="font-weight: 600; color: var(--text-primary);">Admin</div>
+            <div style="color: var(--text-secondary); font-size: 12px;">Administrator</div>
+          </div>
+        </div>
+        <button id="logout-btn" class="outline">Logout</button>
+      </div>
+    </header>
+
+    <main class="dashboard-content" id="section-dashboard">
+      <section class="analytics-grid" id="section-conversion">
+        <article class="stat-card highlight">
+          <h2>Total Leads</h2>
+          <p id="stat-total">0</p>
+          <span class="stat-badge">All time</span>
+        </article>
+        <article class="stat-card">
+          <h2>New Leads</h2>
+          <p id="stat-new">0</p>
+          <span class="stat-badge">Waiting</span>
+        </article>
+        <article class="stat-card">
+          <h2>Contacted</h2>
+          <p id="stat-contacted">0</p>
+          <span class="stat-badge">In progress</span>
+        </article>
+        <article class="stat-card">
+          <h2>Qualified</h2>
+          <p id="stat-qualified">0</p>
+          <span class="stat-badge">Ready</span>
+        </article>
+        <article class="stat-card">
+          <h2>Converted</h2>
+          <p id="stat-converted">0</p>
+          <span class="stat-badge success">Active</span>
+        </article>
+        <article class="stat-card highlight">
+          <h2>Conversion Rate</h2>
+          <p id="stat-rate">0%</p>
+          <span class="stat-badge">Performance</span>
+        </article>
+      </section>
+
+      <section class="split-grid" id="section-realtime">
+        <article class="panel-card">
+          <div class="panel-header">
+            <h2>Leads by Source</h2>
+            <span class="panel-meta" id="source-meta">Top 20</span>
+          </div>
+          <div class="panel-body">
+            <ul class="mini-list" id="source-list"></ul>
+          </div>
+        </article>
+
+        <article class="panel-card">
+          <div class="panel-header">
+            <h2>Leads Over Time</h2>
+            <span class="panel-meta" id="daily-meta">Last 14 days</span>
+          </div>
+          <div class="panel-body">
+            <ul class="mini-list" id="daily-list"></ul>
+          </div>
+        </article>
+      </section>
+
+      <section class="split-grid" style="margin-bottom: 24px;">
+        <article class="panel-card">
+          <div class="panel-header">
+            <h2>CRM Traffic Details</h2>
+            <span class="panel-meta">Line comparison</span>
+          </div>
+          <div class="panel-body">
+            <div class="traffic-chart-wrap">
+              <canvas id="traffic-line-chart" aria-label="CRM traffic chart"></canvas>
+            </div>
+          </div>
+        </article>
+
+        <article class="panel-card">
+          <div class="panel-header">
+            <h2>Lead Source Share</h2>
+            <span class="panel-meta">Top channels</span>
+          </div>
+          <div class="panel-body donut-wrap">
+            <div id="source-donut" class="donut-chart" aria-label="Lead source chart"></div>
+            <ul id="source-legend" class="mini-list compact"></ul>
+          </div>
+        </article>
+      </section>
+
+      <section class="panel-card" style="margin-bottom: 24px;">
+        <div class="panel-header">
+          <h2>Bookmarked Leads</h2>
+          <span class="panel-meta" id="bookmark-meta">0 bookmarked</span>
+        </div>
+        <div class="panel-body">
+          <div id="bookmark-list" class="bookmark-list"></div>
+        </div>
+      </section>
+
+      <section class="table-card" id="section-followups" style="margin-bottom: 24px;">
+        <div class="panel-header" style="padding: 16px 20px; border-bottom: 1px solid var(--border);">
+          <div>
+            <h2 style="font-size: 14px; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-secondary);">Follow-ups</h2>
+            <div class="panel-meta" id="task-meta">Loading…</div>
+          </div>
+          <div style="display: flex; gap: 10px;">
+            <button id="refresh-tasks" class="outline">Refresh</button>
+          </div>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Due</th>
+                <th>Type</th>
+                <th>Lead</th>
+                <th>Assignee</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="tasks-body"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="controls" id="section-leads">
+        <div class="control-row">
+          <input id="search-input" type="search" placeholder="Search by name or email..." />
+          <select id="status-filter">
+            <option value="">All statuses</option>
+            <option value="new">New</option>
+            <option value="contacted">Contacted</option>
+            <option value="qualified">Qualified</option>
+            <option value="converted">Converted</option>
+          </select>
+          <select id="priority-filter">
+            <option value="">All priorities</option>
+            <option value="high">High</option>
+            <option value="medium">Medium</option>
+            <option value="low">Low</option>
+          </select>
+          <select id="source-filter">
+            <option value="">All sources</option>
+            <option value="website">Website</option>
+            <option value="instagram">Instagram</option>
+            <option value="referral">Referral</option>
+            <option value="linkedin">LinkedIn</option>
+            <option value="other">Other</option>
+          </select>
+          <select id="assignee-filter">
+            <option value="">All assignees</option>
+          </select>
+          <input id="date-from" type="date" />
+          <input id="date-to" type="date" />
+          <div class="control-actions">
+            <label class="checkbox-inline checkbox-filter" title="Show only leads you bookmarked">
+              <input id="bookmarked-only" type="checkbox" />
+              <span>Bookmarked only</span>
+            </label>
+            <button id="apply-filters" class="primary">Apply</button>
+            <button id="reset-filters" class="outline">Reset</button>
+            <button id="export-csv" class="outline">Export CSV</button>
+            <button id="refresh-analytics" class="outline">Refresh Analytics</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="table-card">
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Source</th>
+                <th>Status</th>
+                <th>Priority</th>
+                <th>Assignee</th>
+                <th>Notes</th>
+                <th>Date</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody id="leads-body"></tbody>
+          </table>
+        </div>
+
+        <div class="pager" id="pager"></div>
+        <p id="message" class="message" style="margin: 16px 20px 0; border-radius: 8px;" aria-live="polite"></p>
+      </section>
+
+      <section class="panel-card" id="section-settings" style="margin-top: 24px;">
+        <div class="panel-header">
+          <h2>Dashboard Settings</h2>
+          <span class="panel-meta">CRM view preferences for this browser</span>
+        </div>
+        <div class="panel-body">
+          <form id="settings-form" novalidate>
+            <div class="settings-grid">
+              <label>
+                API Base URL
+                <input id="api-base-input" type="url" placeholder="http://127.0.0.1:8000/api" />
+              </label>
+              <label>
+                Traffic Chart Window
+                <select id="chart-days-input">
+                  <option value="7">Last 7 days</option>
+                  <option value="14">Last 14 days</option>
+                  <option value="30">Last 30 days</option>
+                </select>
+              </label>
+              <label>
+                Show Currency Scale
+                <select id="currency-mode-input">
+                  <option value="off">Off</option>
+                  <option value="on">On</option>
+                </select>
+              </label>
+              <label class="checkbox-inline settings-checkbox">
+                <input id="settings-bookmarked-default" type="checkbox" />
+                <span>Open dashboard with Bookmarked Only filter enabled</span>
+              </label>
+            </div>
+            <button id="save-api-base" type="submit" class="primary" style="width: fit-content;">Save</button>
+          </form>
+          <p class="subtitle" style="margin-top: 10px;">
+            Tip: these preferences are saved in your browser and applied immediately.
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>

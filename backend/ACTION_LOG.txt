@@ -1,0 +1,2 @@
+2026-03-27 | Started Django development server on 127.0.0.1:8000 (background terminal ID: 5783b8ca-7436-4fa4-acf7-edfbd5d1aa08).
+2026-03-27 | Verified server availability via GET /api/leads/ response code 401 (expected without auth).
