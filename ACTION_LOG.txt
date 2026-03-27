@@ -50,3 +50,5 @@
 [2026-03-27] Connected Git remote to https://github.com/SathyaMeka33/FUTURE_FS_02 and pushed branch main successfully
 [2026-03-27] Fixed active Django settings module (crm_project.settings) for Render: dj-database-url DB parsing, proxy SSL, secure cookies, HSTS, and CSRF trusted origins
 [2026-03-27] Updated deployment hardening and active settings module for Render compatibility
+[2026-03-27] Started local frontend server at http://127.0.0.1:5500 and verified backend API reachable at http://127.0.0.1:8000 (401 expected without auth)
+[2026-03-27] Fixed Render DB driver/runtime issue: switched to psycopg3 binary and pinned Python runtime to 3.12.8
