@@ -1,0 +1,10 @@
+[build]
+  # Base directory is set to "frontend" in Netlify UI.
+  # Publish the static files from this folder.
+  publish = "."
+  command = ""
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"

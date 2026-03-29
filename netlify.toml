@@ -1,0 +1,10 @@
+[build]
+  # This repo's frontend is a plain static site under /frontend
+  publish = "frontend"
+  command = ""
+
+# Optional: keep caching sane for static HTML
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"

@@ -31,7 +31,7 @@ git push -u origin main
    - **Root Directory:** `backend`
    - **Runtime:** Python 3
    - **Build Command:** `pip install -r requirements.txt && python manage.py migrate`
-   - **Start Command:** `gunicorn core.wsgi:application --bind 0.0.0.0:$PORT`
+  - **Start Command:** `gunicorn crm_project.wsgi:application --bind 0.0.0.0:$PORT`
 
 ### Step 3: Set Environment Variables
 
@@ -43,6 +43,8 @@ DEBUG=False
 ALLOWED_HOSTS=<your-render-domain>.onrender.com
 DATABASE_URL=postgresql://neondb_owner:XXX@ep-calm-shadow-a1irvadp-pooler.ap-southeast-1.aws.neon.tech/CRM?sslmode=require&channel_binding=require
 CORS_ALLOWED_ORIGINS=http://localhost:3000,https://<your-vercel-frontend-domain>
+
+Note: Render sets `RENDER_EXTERNAL_HOSTNAME` automatically. The project reads this to avoid `DisallowedHost` 400 errors even if the service name changes.
 ```
 
 ### Step 4: Deploy

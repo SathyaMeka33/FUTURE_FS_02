@@ -12,6 +12,21 @@ DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 
 ALLOWED_HOSTS = [h.strip() for h in os.getenv("ALLOWED_HOSTS", "127.0.0.1,localhost").split(",") if h.strip()]
 
+# Always allow local hosts (Render health checks often use these).
+ALLOWED_HOSTS.extend(["localhost", "127.0.0.1"])
+
+# Render provides the public hostname via RENDER_EXTERNAL_HOSTNAME.
+# Adding it here prevents 400 DisallowedHost errors when the service name changes.
+render_external_hostname = os.getenv("RENDER_EXTERNAL_HOSTNAME", "").strip()
+if render_external_hostname:
+    ALLOWED_HOSTS.append(render_external_hostname)
+
+# Safe fallback for Render subdomains (allows <service>.onrender.com).
+ALLOWED_HOSTS.append(".onrender.com")
+
+# De-duplicate while preserving order
+ALLOWED_HOSTS = list(dict.fromkeys(ALLOWED_HOSTS))
+
 # Render and similar platforms terminate SSL at the proxy.
 SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
 
@@ -109,12 +124,23 @@ REST_FRAMEWORK = {
 
 cors_origins_env = os.getenv("CORS_ALLOWED_ORIGINS", "")
 CORS_ALLOWED_ORIGINS = [o.strip() for o in cors_origins_env.split(",") if o.strip()]
-CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_ALL_ORIGINS = DEBUG and not CORS_ALLOWED_ORIGINS
+
+# Optional troubleshooting switch: set CORS_ALLOW_ALL_ORIGINS=true to quickly
+# verify CORS-related "Cannot reach backend" browser errors.
+cors_allow_all_env = os.getenv("CORS_ALLOW_ALL_ORIGINS", "").strip().lower() == "true"
+CORS_ALLOW_ALL_ORIGINS = cors_allow_all_env or (DEBUG and not CORS_ALLOWED_ORIGINS)
+
+# Token auth doesn't require cookies; keep credentials enabled only when not using wildcard.
+CORS_ALLOW_CREDENTIALS = not CORS_ALLOW_ALL_ORIGINS
 
 CSRF_TRUSTED_ORIGINS = [
     origin.strip() for origin in os.getenv("CSRF_TRUSTED_ORIGINS", "").split(",") if origin.strip()
 ]
+
+if render_external_hostname:
+    render_csrf_origin = f"https://{render_external_hostname}"
+    if render_csrf_origin not in CSRF_TRUSTED_ORIGINS:
+        CSRF_TRUSTED_ORIGINS.append(render_csrf_origin)
 
 if DEBUG:
     EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
